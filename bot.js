@@ -1,3 +1,10 @@
+/*
+Hi there, this is my old bot file. This was my first solo project, hence the ugly coding. This file is now redundant but I'm keeping it here
+as an example for beginners.
+
+I've commented a lot of the commands, and I hope that it's self explanatory. The new bot has the exact same function, except it's now easier
+to look at and understand.
+*/
 const Discord = require("discord.js"); //allows discordjs to work
 const client = new Discord.Client(); //initiates the bot
 const yt = require('ytdl-core'); //allows for youtube integration
