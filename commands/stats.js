@@ -8,7 +8,7 @@ exports.run = (client, message, args) => {
         .setThumbnail(`${client.user.avatarURL}`)
         .addField(`Info`, `Bot created by Mjatt`, true)
         .addField(`Language`, `Javascript`, true)
-        .addField(`Bot Version`, `0.4`, true)
+        .addField(`Bot Version`, `0.5`, true)
         .addField(`Memory`, `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, true)
         .addField(`Servers`, `${client.guilds.size.toLocaleString()}`, true)
         .addField(`Channels`, `${client.channels.size.toLocaleString()}`, true)

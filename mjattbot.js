@@ -5,6 +5,17 @@ const key = require("./config.json"); //contains the prefix and bot token
 const firebase = require("firebase");
 const fs = require("fs");
 
+var config = {
+    apiKey: "AIzaSyASYCAs0rJL8eFaJMnd8h9sOZST_H2-j24",
+    authDomain: "mjattbot.firebaseapp.com",
+    databaseURL: "https://mjattbot.firebaseio.com",
+    projectId: "mjattbot",
+    storageBucket: "mjattbot.appspot.com",
+    messagingSenderId: "688773779333"
+  };
+
+  firebase.initializeApp(config);
+  
 client.on("ready", () => {
   let launch = new Date();
   console.log(`Client launched at ${launch}`); //starts the bot
