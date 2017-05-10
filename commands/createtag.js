@@ -4,4 +4,5 @@ exports.run = (client, message, args) => {
   let video = args[1];
   firebaseRef.child("Tags").child(tag).set(video);
   message.channel.send(`Tag created as ${tag}`);
+  console.log(`${message.author.username} made the tag ${tag} ${video} in ${message.guild}`);
 }

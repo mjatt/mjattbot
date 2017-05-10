@@ -15,4 +15,5 @@ exports.run = (client, message, args) => {
         .addField(`Users`, `${client.users.size.toLocaleString()}`, true)
          .setFooter(`Request generated at ${now}`)
         message.channel.send({embed: embed});
+        console.log(`${message.author.username} just asked about my stats in ${message.guild}`);
 }

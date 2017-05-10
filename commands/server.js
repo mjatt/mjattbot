@@ -6,7 +6,6 @@ exports.run = (client, message, args) => {
     } else {
   let name = message.guild.id;
 
-    console.log(name);
     let embed = new discord.RichEmbed();
     var emojis = client.guilds.get(name).emojis.map(e => e).join(": ");
     if(emojis === undefined){
@@ -27,5 +26,6 @@ exports.run = (client, message, args) => {
     .addField(`Roles`, `${client.guilds.get(name).roles.map(r => r.name).join(", ")}`)
     .setFooter(`Request created at ` + now)
     message.channel.send({embed: embed});
+    console.log(`${message.author.username} just viewed ${message.guild}'s stats`);
 }
 };
