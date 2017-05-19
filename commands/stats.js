@@ -3,7 +3,7 @@ const Discord = require(`discord.js`);
 exports.run = (client, message, args) => {
   const embed = new Discord.RichEmbed();
          const now = new Date();
-        embed.setColor(462224)
+        embed.setColor('RANDOM')
         .setAuthor(`NelsonManbot`, `${client.user.avatarURL}`)
         .setThumbnail(`${client.user.avatarURL}`)
         .addField(`Info`, `Bot created by Mjatt`, true)
