@@ -13,7 +13,7 @@ exports.run = (client, message, args) => {
     }
     const now = new Date();
     embed
-    .setColor(462224)
+    .setColor('RANDOM')
     .setAuthor(`${client.guilds.get(name).name}`, client.guilds.get(name).iconURL)
     .setTitle(`${client.guilds.get(name).name}` , "Server Info")
     .setThumbnail(client.guilds.get(name).iconURL)
