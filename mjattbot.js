@@ -24,13 +24,16 @@ client.on("ready", () => {
 
 client.on("guildMemberAdd", member => { //if a new user joins
   let guild = member.guild; //gets the server that the member joined
-  guild.defaultChannel.sendMessage(`Welcome to ${member.guild.name}+ " " + ${member.user}`) //sends message to default channel of the server
+  guild.defaultChannel.sendMessage(`Welcome to ${member.guild.name} ${member.user}`) //sends message to default channel of the server
   console.log(`${member.user} just joined ${member.guild.name}`);
 });
 
 client.on("message", message => {
   if (message.author.bot) return;
-  if (message.channel.type === "dm") return;
+  if (message.channel.type === "dm") {
+  message.channel.send("Please try this in a public guild. Error: DM channel");
+  return;
+  };
   if(!message.content.startsWith(key.prefix)) return;
 
   let command = message.content.split(" ")[0];
