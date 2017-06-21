@@ -1,5 +1,5 @@
 exports.run = (client, message, args) => {
-  let can_manage_chans = message.channel.permissionsFor(message.member).hasPermission("BAN_MEMBERS")
+  /* let can_manage_chans = message.channel.permissionsFor(message.member).hasPermission("BAN_MEMBERS")
     if(!can_manage_chans) {
        message.reply('Insufficient Permissions');
     } else {
@@ -20,5 +20,6 @@ exports.run = (client, message, args) => {
           })
         })
       }
-    }
+    } */
+    console.log(`${message.author.username} tried to ban someone in ${message.guild}`);
 }

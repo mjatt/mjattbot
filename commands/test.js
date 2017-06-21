@@ -2,8 +2,9 @@ exports.run = (client, message, args) => {
   const voiceChannel = message.member.voiceChannel;
       if (!voiceChannel) {
         return message.reply(`You need to join a channel first`);
+        console.log(`${message.author.username} failed to test audio playback in ${message.guild}`)
       }
-      console.log(`${message.author.username} just tested audio playback in ${message.member.voiceChannel}`);
+      console.log(`${message.author.username} just tested audio playback in ${message.member.voiceChannel} in ${message.guild}`);
       message.channel.send(`Testing playback in ${voiceChannel}`);
       voiceChannel.join()
         .then(connnection => {

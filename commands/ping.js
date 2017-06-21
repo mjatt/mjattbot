@@ -3,4 +3,5 @@ exports.run = (client, message, args) => {
   .then(m => {
     m.edit(`Pong **${m.createdTimestamp - message.createdTimestamp}ms**`)
   })
+  console.log(`${message.author.username} pinged in ${message.guild}`);
 }
