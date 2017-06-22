@@ -4,6 +4,7 @@ const yt = require('ytdl-core'); //allows for youtube integration
 const key = require("./config.json"); //contains the prefix and bot token
 const firebase = require("firebase");
 const fs = require("fs");
+var count = 0;
 
 var config = {
     apiKey: "AIzaSyASYCAs0rJL8eFaJMnd8h9sOZST_H2-j24",
@@ -16,16 +17,13 @@ var config = {
 
   firebase.initializeApp(config);
   
-client.on("ready", () => {
-  let launch = new Date();
-  console.log(`Client launched at ${launch}`); //starts the bot
-  // client.user.setGame(`+help | Servers: ${client.guilds.size}`)
-});
-
-client.on("guildMemberAdd", member => { //if a new user joins
-  let guild = member.guild; //gets the server that the member joined
-  guild.defaultChannel.sendMessage(`Welcome to ${member.guild.name} ${member.user}`) //sends message to default channel of the server
-  console.log(`${member.user} just joined ${member.guild.name}`);
+fs.readdir("./events/", (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+    let eventFunction = require(`./events/${file}`);
+    let eventName = file.split(".")[0];
+    client.on(eventName, (...args) => eventFunction.run(client, ...args));
+  });
 });
 
 client.on("message", message => {
@@ -44,6 +42,8 @@ client.on("message", message => {
   try {
     let cmd = require(`./commands/${command}.js`);
     cmd.run(client, message, args);
+    count ++;
+    console.log(count);
   } catch (err) {
     console.error(err);
   }
