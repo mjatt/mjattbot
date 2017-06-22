@@ -3,7 +3,10 @@ var Discord = require("discord.js");
 var wowow = ":thinking:";
 
 exports.run = (client, message, args) => {
-  weather.find({ search: args.join(" "), degreeType: "C" }, function(err, result) {
+  weather.find({ search: args.join(" "), degreeType: "C" }, function(
+    err,
+    result
+  ) {
     if (result[0] !== undefined) {
       if (err) {
         console.log(err);
