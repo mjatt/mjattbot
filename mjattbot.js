@@ -7,7 +7,7 @@ const fs = require("fs");
 var count = 0;
 
 var config = {
-  apiKey: "AIzaSyASYCAs0rJL8eFaJMnd8h9sOZST_H2-j24",
+  apiKey: key.firebasekey,
   authDomain: "mjattbot.firebaseapp.com",
   databaseURL: "https://mjattbot.firebaseio.com",
   projectId: "mjattbot",
