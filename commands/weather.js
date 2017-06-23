@@ -15,6 +15,8 @@ exports.run = (client, message, args) => {
         let type = JSON.stringify(result[0].current.skytext, null, 2);
         let temp = JSON.stringify(result[0].current.temperature, null, 2);
         let wind = JSON.stringify(result[0].current.windspeed, null, 2);
+        let feels = JSON.stringify(result[0].current.feelslike, null, 2);
+        let humidity = JSON.stringify(result[0].current.humidity, null, 2);
 
         if (type === `"sunny"`) {
           var wowow = ":sunny:";
@@ -33,6 +35,8 @@ exports.run = (client, message, args) => {
           .addField(`Temperature`, `${temp.replace(/\"/g, "")}°C`, true)
           .addField(`Windspeed`, wind.replace(/\"/g, ""), true)
           .addField(`What's it like?`, wowow.replace(/\"/g, ""), true)
+          .addField('It feels like', `${feels.replace(/\"/g, "")}°C`, true)
+          .addField(`Humidity`, humidity.replace(/\"/g, ""), true)
           .setFooter(`Request generated at ${now}`);
         message.channel.send({ embed: embed });
       }

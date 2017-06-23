@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+
 exports.run = client => {
   let guild = member.guild; //gets the server that the member joined
   guild.defaultChannel.sendMessage(

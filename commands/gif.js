@@ -7,9 +7,7 @@ exports.run = (client, message, args) => {
       message.channel.send(res.data.url);
       console.log(res.data.url);
     } else {
-      message.channel.send(
-        `There was an error loading your gif. Please try again`
-      );
+      message.channel.send(`Couldn't find a gif for ${gifName}`);
     }
   });
 };
