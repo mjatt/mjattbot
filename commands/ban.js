@@ -1,6 +1,6 @@
 const Discord = require(`discord.js`);
 
-exports.run = (clent, message, args) => {
+exports.run = (client, message, args) => {
   if (!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) {
     message.reply(`I don't have permission to do that`);
   }
