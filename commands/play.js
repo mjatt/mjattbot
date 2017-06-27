@@ -1,23 +1,47 @@
 exports.run = (client, message, args) => {
-  let args = message.content.split(" ").slice(1); //gets the url of the video
-  let video = args[0]; //stores the url as the video
-  const voiceChannel = message.member.voiceChannel; //gets the users voice channel
+  const url = args.join(" ");
+  const voiceChannel = message.member.voiceChannel;
+  if (!args[0]) return message.reply(`Please specify a link to play`);
   if (!voiceChannel) {
-    //if theyre not in a voice channel
-    return message.reply(`Join a voice channel you speng`); //aborts the command
+    return message.reply(`You must be in a voice channel first`);
   }
-  console.log(`${message.author.username} just made me play ${video}`);
-  message.channel.send(`Now playing in ${voiceChannel}`);
-  voiceChannel
-    .join() //joins the channel
-    .then(connnection => {
-      let stream = yt(video, { audioonly: true }); //streams the audio through the voice channel
-      const dispatcher = client.voiceConnections
-        .get("181839332313792518")
-        .playStream(stream);
-      dispatcher.on("end", () => {
-        //when the video ends
-        voiceChannel.leave(); //leaves the voice channel
+  voiceChannel.join().then(connnection => {
+    dispatcher = message.guild.voiceConnection.playStream(
+      yt(url, {
+        audioonly: true
+      }),
+      {
+        passes: 1
+      }
+    );
+    yt.getInfo(url, function(err, info) {
+      message.channel.send("Playing **" + info.title + "**");
+    });
+    let collector = message.channel.createCollector(m => m);
+    collector.on("collect", c => {
+      if (c.content.startsWith("+pause")) {
+        message.channel.sendMessage("Song paused").then(() => {
+          dispatcher.pause();
+        });
+      } else if (c.content.startsWith("+resume")) {
+        message.channel.sendMessage("Song resumed").then(() => {
+          dispatcher.resume();
+        });
+      } else if (c.content.startsWith("+stop")) {
+        message.channel.sendMessage("Stopped").then(() => {
+          dispatcher.end();
+        });
+      }
+    });
+    dispatcher.on("end", () => {
+      collector.stop();
+      voiceChannel.leave();
+    });
+    dispatcher.on("error", err => {
+      return message.channel.sendMessage("Error: " + err).then(() => {
+        collector.stop();
+        voiceChannel.leave();
       });
     });
+  });
 };
