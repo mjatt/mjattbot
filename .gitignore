@@ -1,3 +1,5 @@
 config.json
 /node_modules/
 node
+commands/google.js
+commands/overwatch.js
