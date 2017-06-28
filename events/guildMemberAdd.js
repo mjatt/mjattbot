@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-exports.run = client => {
+exports.run = (client, member) => {
   let guild = member.guild; //gets the server that the member joined
   guild.defaultChannel.sendMessage(
     `Welcome to ${member.guild.name}, ${member.user}!`
