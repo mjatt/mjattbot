@@ -8,11 +8,11 @@ exports.run = (client, message, args) => {
     } else {
       let value = args[0];
       let final = value * 60000;
-      console.log(value);
-      let remindText = args[1];
-      message.reply(`I will remind you in ${value} minutes, "${remindText}"`);
+      var original = args.slice(1);
+      var finalText = original.join(" ");
+      message.reply(`I will remind you in ${value} minutes, "${finalText}"`);
       function timer() {
-        setTimeout(function(){ message.reply(`${remindText}`); }, final);
+        setTimeout(function(){ message.reply(`You asked me to remind you: "${finalText}"`); }, final);
       }
       timer();
     }
