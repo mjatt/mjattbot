@@ -18,6 +18,7 @@
     "moment": "^2.18.1",
     "node-soundcloud": "^0.0.6",
     "one-liner-joke": "^1.0.0",
+    "opusscript": "0.0.3",
     "overwatch-js": "^1.5.2",
     "pokeapi-js-wrapper": "^1.0.2",
     "pokedex-promise-v2": "^3.0.3",
