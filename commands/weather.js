@@ -3,6 +3,10 @@ var Discord = require("discord.js");
 var wowow = ":thinking:";
 
 exports.run = (client, message, args) => {
+  console.log(
+    `${message.author.username} just checked the weather in ${message.guild}`
+  );
+
   weather.find({ search: args.join(" "), degreeType: "C" }, function(
     err,
     result
@@ -35,7 +39,7 @@ exports.run = (client, message, args) => {
           .addField(`Temperature`, `${temp.replace(/\"/g, "")}°C`, true)
           .addField(`Windspeed`, wind.replace(/\"/g, ""), true)
           .addField(`What's it like?`, wowow.replace(/\"/g, ""), true)
-          .addField('It feels like', `${feels.replace(/\"/g, "")}°C`, true)
+          .addField("It feels like", `${feels.replace(/\"/g, "")}°C`, true)
           .addField(`Humidity`, humidity.replace(/\"/g, ""), true)
           .setFooter(`Request generated at ${now}`);
         message.channel.send({ embed: embed });
