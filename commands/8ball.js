@@ -7,4 +7,4 @@ exports.run = (client, message, args) => {
   var answer = answers[Math.floor(Math.random() * answers.length)]; //picks an answer by random
   message.channel.send(answer);
   console.log(`${message.author.username} used the 8ball in ${message.guild}`);
-}
+}};
