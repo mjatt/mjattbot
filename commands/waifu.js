@@ -4,7 +4,4 @@ exports.run = (client, message, args) => {
   var rating = answer[Math.floor(Math.random() * answer.length)];
 
   message.channel.send(`${waifu} is a ${rating}/10 waifu`);
-  console.log(
-    `${message.author.username} just found out how good ${waifu} is in ${message.guild}`
-  );
 };

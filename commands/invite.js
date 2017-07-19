@@ -5,7 +5,4 @@ exports.run = (client, message, args) => {
   message.channel.send(
     `Join my developer's server https://discord.gg/e2B2nHX`
   );
-  console.log(
-    `${message.author.username} got the invite links in ${message.guild}`
-  );
 };

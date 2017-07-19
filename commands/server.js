@@ -35,8 +35,5 @@ exports.run = (client, message, args) => {
       )
       .setFooter(`Request created at ` + now);
     message.channel.send({ embed: embed });
-    console.log(
-      `${message.author.username} just viewed ${message.guild}'s stats`
-    );
   }
 };

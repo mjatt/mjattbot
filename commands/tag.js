@@ -10,9 +10,7 @@ exports.run = (client, message, args) => {
 
   if(!voiceChannel) {
     message.reply(`You must be in a voice channel first`);
-    console.log(`${message.author.username} just tried to trigger a tag but failed in ${message.guild}`);
   };
-  console.log(`${message.author.username} just triggered the tag: ${tag} in ${message.guild}`);
   voiceChannel.join()
     .then(connection => {
       let stream = yt(final, {audioonly:true});
