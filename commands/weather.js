@@ -3,18 +3,12 @@ var Discord = require("discord.js");
 var wowow = ":thinking:";
 
 exports.run = (client, message, args) => {
-  console.log(
-    `${message.author.username} just checked the weather in ${message.guild}`
-  );
-
   weather.find({ search: args.join(" "), degreeType: "C" }, function(
     err,
     result
   ) {
-    if (result[0] !== undefined) {
-      if (err) {
-        console.log(err);
-      } else {
+    try {
+      if (result !== undefined) {
         let location = JSON.stringify(result[0].location.name, null, 2);
         let type = JSON.stringify(result[0].current.skytext, null, 2);
         let temp = JSON.stringify(result[0].current.temperature, null, 2);
@@ -44,8 +38,9 @@ exports.run = (client, message, args) => {
           .setFooter(`Request generated at ${now}`);
         message.channel.send({ embed: embed });
       }
-    } else {
-      message.channel.send(`Couldn't find a place with that name`);
+    } catch (err) {
+      console.log(err);
+      message.channel.send(`Couldn't find a place with the name ${args.join(" ")}`);
     }
   });
 };
