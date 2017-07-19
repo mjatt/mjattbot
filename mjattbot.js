@@ -5,6 +5,9 @@ const key = require("./config.json"); //contains the prefix and bot token
 const firebase = require("firebase");
 const fs = require("fs");
 var count = 0;
+const pokemonGif = require("pokemon-gif");
+var poke = setInterval(pokeCatch, 300000);
+var pokemon = require("./data/pokemon.json");
 
 var config = {
   apiKey: key.firebasekey,
@@ -26,6 +29,34 @@ fs.readdir("./events/", (err, files) => {
   });
 });
 
+function pokeCatch() {
+  var filter = m => m.content.startsWith(`!catch`);
+  var entry = pokemon[Math.floor(Math.random() * pokemon.length)];
+  try {
+    var gif = pokemonGif(entry);
+  } catch (err) {
+    console.log(`Error, input: ${entry}`);
+  }
+  if (gif == null) {
+    return console.log(`no pokemon lol`);
+  } else {
+    client.channels
+      .get("273493977133481984")
+      .send(
+        `A wild ${entry} appeared! You have 15 seconds to catch it! ${gif}`
+      );
+    client.channels
+      .get("273493977133481984")
+      .awaitMessages(filter, { max: 1, time: 30000, errors: ["time"] })
+      .then(collected =>
+        client.channels.get("273493977133481984").send(`${collected.first().author.username} Caught ${entry}!`)
+      )
+      .catch(collected =>
+        client.channels.get("273493977133481984").send(`The wild ${entry} fled.`)
+      );
+  }
+}
+
 client.on("message", message => {
   if (message.author.bot) return;
   if (message.channel.type === "dm") {
@@ -45,9 +76,11 @@ client.on("message", message => {
     let cmd = require(`./commands/${command}.js`);
     cmd.run(client, message, args);
     count++;
-    console.log(count);
+    console.log(
+      `Message Number: ${count} Command: ${command} Args: ${args.join(" ")} Author: ${message.author.username}`
+    );
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 });
 client.login(key.token); //the token used to initiate the bot, KEEP SECRET PLS
