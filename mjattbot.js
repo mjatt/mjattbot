@@ -47,7 +47,7 @@ function pokeCatch() {
       );
     client.channels
       .get("273493977133481984")
-      .awaitMessages(filter, { max: 1, time: 30000, errors: ["time"] })
+      .awaitMessages(filter, { max: 1, time: 15000, errors: ["time"] })
       .then(collected =>
         client.channels.get("273493977133481984").send(`${collected.first().author.username} Caught ${entry}!`)
       )
