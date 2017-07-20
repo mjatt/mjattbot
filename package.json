@@ -27,6 +27,7 @@
     "random-cat": "^1.0.1",
     "request": "^2.81.0",
     "thecatapi": "^1.0.1",
+    "valid-url": "^1.0.9",
     "weather": "^0.1.0",
     "weather-js": "^2.0.0",
     "xkcd": "^1.1.2",
