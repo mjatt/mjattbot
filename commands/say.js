@@ -1,3 +1,7 @@
 exports.run = (client, message, args) => {
-  message.channel.send(args.join(" ")); //makes the bot say the user's input
+  if (!message.mentions.users.first()) {
+    message.channel.send(args.join(" "));
+  } else {
+    message.channel.send(`Don't mention users`);
+  }
 };
