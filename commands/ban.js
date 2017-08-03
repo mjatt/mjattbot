@@ -14,7 +14,7 @@ exports.run = (client, message, args) => {
       `You have been banned from ${message.guild} by ${message.author.username}. Reason: ${reason}`
     );
     banUser.send(`http://gph.is/2gdmhIL`);
-    message.guild.member(banUser).kick();
+    message.guild.member(banUser).ban();
     message.reply(`Banned ${banUser}`);
   }
 };
