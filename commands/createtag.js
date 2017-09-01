@@ -1,7 +1,6 @@
 const firebase = require("firebase");
 
 const firebaseRef = firebase.database().ref();
-const firebaseUserRef = firebase.database().ref().child("Users");
 
 exports.run = (client, message, args) => {
   let tag = args[0];
