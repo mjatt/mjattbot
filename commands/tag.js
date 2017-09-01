@@ -3,7 +3,10 @@ const firebase = require("firebase");
 exports.run = (client, message, args) => {
   let tag = args[0];
 
-  const firebaseRef = firebase.database().ref();
+  if (tag == null) {
+    return message.channel.send(`You didn't specify a tag!`);
+  }
+
   var firebaseNewRef = firebase
     .database()
     .ref()
@@ -15,6 +18,10 @@ exports.run = (client, message, args) => {
   firebaseNewRef.on("value", gotData, errData);
 
   function gotData(data) {
+    console.log(data);
+    if(data.value_ == null) {
+      return message.reply(`nop`);
+    }
     message.channel.send(data.val());
   }
 
