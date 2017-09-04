@@ -6,7 +6,6 @@ const firebase = require("firebase");
 const fs = require("fs");
 var count = 0;
 const pokemonGif = require("pokemon-gif");
-var poke = setInterval(pokeCatch, 300000);
 var pokemon = require("./data/pokemon.json");
 
 var config = {
@@ -19,6 +18,7 @@ var config = {
 };
 
 firebase.initializeApp(config);
+const firebaseRef = firebase.database().ref();
 
 fs.readdir("./events/", (err, files) => {
   if (err) return console.error(err);
@@ -28,34 +28,6 @@ fs.readdir("./events/", (err, files) => {
     client.on(eventName, (...args) => eventFunction.run(client, ...args));
   });
 });
-
-function pokeCatch() {
-  var filter = m => m.content.startsWith(`!catch`);
-  var entry = pokemon[Math.floor(Math.random() * pokemon.length)];
-  try {
-    var gif = pokemonGif(entry);
-  } catch (err) {
-    console.log(`Error, input: ${entry}`);
-  }
-  if (gif == null) {
-    return console.log(`no pokemon lol`);
-  } else {
-    client.channels
-      .get("273493977133481984")
-      .send(
-        `A wild ${entry} appeared! You have 15 seconds to catch it! ${gif}`
-      );
-    client.channels
-      .get("273493977133481984")
-      .awaitMessages(filter, { max: 1, time: 15000, errors: ["time"] })
-      .then(collected =>
-        client.channels.get("273493977133481984").send(`${collected.first().author.username} Caught ${entry}!`)
-      )
-      .catch(collected =>
-        client.channels.get("273493977133481984").send(`The wild ${entry} fled.`)
-      );
-  }
-}
 
 client.on("message", message => {
   if (message.author.bot) return;
