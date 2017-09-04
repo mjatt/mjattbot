@@ -3,9 +3,7 @@ const firebase = require("firebase");
 exports.run = (client, message, args) => {
   let tag = args[0];
 
-  if (tag == null) {
-    return message.channel.send(`You didn't specify a tag!`);
-  }
+  if (!tag) return console.warn("no tag specified using tag command in " + message.guild.name);
 
   firebase
     .database()
