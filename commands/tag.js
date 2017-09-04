@@ -7,25 +7,18 @@ exports.run = (client, message, args) => {
     return message.channel.send(`You didn't specify a tag!`);
   }
 
-  var firebaseNewRef = firebase
+  firebase
     .database()
-    .ref()
-    .child("Tags")
-    .child("servers")
-    .child(message.guild.id)
-    .child(tag);
-
-  firebaseNewRef.on("value", gotData, errData);
-
-  function gotData(data) {
-    console.log(data);
-    if(data.value_ == null) {
-      return message.reply(`nop`);
-    }
-    message.channel.send(data.val());
-  }
-
-  function errData(err) {
-    console.log(err);
-  }
+    .ref("/Tags/servers/" + message.guild.id + "/" + tag)
+    .once("value")
+    .then(function(snapshot) {
+      var data = snapshot.val();
+      if (data) {
+        message.channel.send(data);
+      } else {
+        message.channel.send(
+          "Couldn't find that tag. Did you mean to +createtag?"
+        );
+      }
+    });
 };

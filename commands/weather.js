@@ -1,6 +1,5 @@
 var weather = require("weather-js");
 var Discord = require("discord.js");
-var wowow = ":thinking:";
 
 exports.run = (client, message, args) => {
   weather.find({ search: args.join(" "), degreeType: "C" }, function(
@@ -20,7 +19,7 @@ exports.run = (client, message, args) => {
           var wowow = ":sunny:";
         } else if ((type = `"partly cloudy"`)) {
           var wowow = ":partly_sunny:";
-        } else if ((type = '"rainy"')) {
+        } else if ((type = `"rainy"`)) {
           var wowow = ":cloud_rain:";
         }
 
