@@ -73,6 +73,10 @@ client.on("message", message => {
 
   try {
     let cmd = require(`./commands/${command}.js`);
+    count++;
+    console.log(
+      `Message Number: ${count} Command: ${command} Args: ${args.join(" ") ? args.join(" ") : "no arguments"} Author: ${message.author.username}`
+    );
     cmd.run(client, message, args);
   } catch (err) {
     try {
