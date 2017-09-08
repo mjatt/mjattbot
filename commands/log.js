@@ -1,0 +1,23 @@
+exports.run = (client, message, args) => {
+  if (!message.guild.channels.find("name", `moderation`)) {
+    message.guild
+      .createChannel("moderation", "text")
+      .then(log => {
+        setTimeout(() => {
+          let everyone = message.guild.id;
+          log.overwritePermissions(`${everyone}`, {
+            SEND_MESSAGES: false
+          });
+          log.overwritePermissions(client.user.id, {
+            SEND_MESSAGES: true
+          });
+        }, 2500);
+      })
+      .catch(e => {
+        message.channel.send("There was an error, try again.");
+      });
+    message.reply(`Channel created.`);
+  } else {
+    message.reply(`That channel already exists.`);
+  }
+};
