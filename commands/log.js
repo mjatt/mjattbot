@@ -11,12 +11,12 @@ exports.run = (client, message, args) => {
           log.overwritePermissions(client.user.id, {
             SEND_MESSAGES: true
           });
-        }, 2500);
+        }, 5000);
       })
       .catch(e => {
         message.channel.send("There was an error, try again.");
       });
-    message.reply(`Channel created.`);
+    message.reply(`Channel created as #moderation.`);
   } else {
     message.reply(`That channel already exists.`);
   }

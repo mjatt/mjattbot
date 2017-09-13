@@ -5,11 +5,7 @@ exports.run = (client, message, args) => {
     let victim = args.join(" ");
     var number = ["1", "2", "3", "4", "5", "6"];
     var answer = number[Math.floor(Math.random() * number.length)];
-    if (message.author.id === `122088742910558209`) {
-      message.reply(
-        `the almighty Mjatt stabbed ${victim} with his finger. ${victim} died`
-      );
-    } else if (answer === "1") {
+    if (answer === "1") {
       message.reply(`stabbed ${victim}, rippo my gyppo`);
     } else if (answer === "2") {
       message.reply(`You messed up and stabbed yourself.`);
