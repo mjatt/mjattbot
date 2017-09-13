@@ -55,7 +55,9 @@ client.on("message", message => {
     console.log(err);
   }
 });
-client.login(key.token); //the token used to initiate the bot, KEEP SECRET PLS
+client.login(key.token).then(() => {
+  console.info(`Logged in successfully as ${client.user.tag}`);
+}).catch(err => console.error("Failed to login: " + err)); //the token used to initiate the bot, KEEP SECRET PLS
 
 process.on("unhandledRejection", err => {
   console.error("Unhandled exception: " + err.stack);

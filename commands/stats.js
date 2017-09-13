@@ -9,7 +9,7 @@ exports.run = (client, message, args) => {
     .setThumbnail(`${client.user.avatarURL}`)
     .addField(`Info`, `Bot created by Mjatt`, true)
     .addField(`Language`, `Javascript`, true)
-    .addField(`Bot Version`, `0.5`, true)
+    .addField(`Bot Version`, `1.1`, true)
     .addField(
       `Memory`,
       `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`,
