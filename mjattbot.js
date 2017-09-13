@@ -5,8 +5,6 @@ const key = require("./config.json"); //contains the prefix and bot token
 const firebase = require("firebase");
 const fs = require("fs");
 var count = 0;
-const pokemonGif = require("pokemon-gif");
-var pokemon = require("./data/pokemon.json");
 
 var config = {
   apiKey: key.firebasekey,
@@ -37,6 +35,59 @@ client.on("message", message => {
     );
     return;
   }
+  firebase
+    .database()
+    .ref("/users/servers/" + message.guild.id + "/" + message.author.id)
+    .once("value")
+    .then(function(snapshot) {
+      var data = snapshot.val();
+      if (data) {
+        var total = 1 + parseInt(data);
+        firebaseRef
+          .child("users")
+          .child("servers")
+          .child(message.guild.id)
+          .child(message.author.id)
+          .set(total);
+
+        if (total % 100 === 0 && total >= 1000) {
+          message.channel.send(
+            `**${message.author.username}** is now level **${total
+              .toString()
+              .substr(0, 2)}**!`
+          );
+          if (!role) {
+            message.guild.createRole("name", `Level ${total.toString()[0]}`);
+            member.addRole(role);
+          } else {
+            member.addRole(role).catch(console.error);
+          }
+        } else if (total % 100 === 0 && total < 1000) {
+          let role = message.guild.roles.find(
+            "name",
+            `Level ${total.toString()[0]}`
+          );
+          let member = message.member;
+          message.channel.send(
+            `**${message.author.username}** is now level **${total.toString()[0]}**`
+          );
+          if (!role) {
+            var newRole = message.guild.createRole("name", `Level ${total.toString()[0]}`);
+            member.addRole(newRole);
+          } else {
+            member.addRole(role).catch(console.error);
+          }
+        } else return;
+      } else {
+        firebaseRef
+          .child("users")
+          .child("servers")
+          .child(message.guild.id)
+          .child(message.author.id)
+          .set(1);
+      }
+    });
+
   if (!message.content.startsWith(key.prefix)) return;
 
   let command = message.content.split(" ")[0];
@@ -45,6 +96,8 @@ client.on("message", message => {
   let args = message.content.split(" ").slice(1);
 
   try {
+    let level = 0;
+    var total = "";
     let cmd = require(`./commands/${command}.js`);
     cmd.run(client, message, args);
     count++;
@@ -55,9 +108,12 @@ client.on("message", message => {
     console.log(err);
   }
 });
-client.login(key.token).then(() => {
-  console.info(`Logged in successfully as ${client.user.tag}`);
-}).catch(err => console.error("Failed to login: " + err)); //the token used to initiate the bot, KEEP SECRET PLS
+client
+  .login(key.token)
+  .then(() => {
+    console.info(`Logged in successfully as ${client.user.tag}`);
+  })
+  .catch(err => console.error("Failed to login: " + err)); //the token used to initiate the bot, KEEP SECRET PLS
 
 process.on("unhandledRejection", err => {
   console.error("Unhandled exception: " + err.stack);
