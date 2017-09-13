@@ -26,7 +26,6 @@ fs.readdir("./events/", (err, files) => {
     client.on(eventName, (...args) => eventFunction.run(client, ...args));
   });
 });
-
 client.on("message", message => {
   if (message.author.bot) return;
   if (message.channel.type === "dm") {
@@ -39,7 +38,7 @@ client.on("message", message => {
     .database()
     .ref("/users/servers/" + message.guild.id + "/" + message.author.id)
     .once("value")
-    .then(function(snapshot) {
+    .then(function (snapshot) {
       var data = snapshot.val();
       if (data) {
         var total = 1 + parseInt(data);
@@ -49,33 +48,41 @@ client.on("message", message => {
           .child(message.guild.id)
           .child(message.author.id)
           .set(total);
-
+        let member = message.member;
+        var roleString = `Level ${total.toString()[0]}`;
         if (total % 100 === 0 && total >= 1000) {
           message.channel.send(
-            `**${message.author.username}** is now level **${total
-              .toString()
-              .substr(0, 2)}**!`
+            `**${message.author.username}** is now level **${total.toString().substr(0, 2)}**!`
           );
-          if (!role) {
-            message.guild.createRole("name", `Level ${total.toString()[0]}`);
-            member.addRole(role);
+          let roleS = message.guild.roles.find(
+            "name",
+            "Level 1"
+          );
+          if (!roleS) {
+            message.guild.createRole({
+              name: roleString,
+              color: 'BLUE',
+            })
+              .then(role => console.log(`Created role ${role}`), member.addRole(role))
           } else {
-            member.addRole(role).catch(console.error);
+            member.addRole(roleS).catch(console.error);
           }
         } else if (total % 100 === 0 && total < 1000) {
-          let role = message.guild.roles.find(
+          let roleS = message.guild.roles.find(
             "name",
-            `Level ${total.toString()[0]}`
+            "Level 1"
           );
-          let member = message.member;
           message.channel.send(
             `**${message.author.username}** is now level **${total.toString()[0]}**`
           );
-          if (!role) {
-            var newRole = message.guild.createRole("name", `Level ${total.toString()[0]}`);
-            member.addRole(newRole);
+          if (!roleS) {
+            message.guild.createRole({
+              name: roleString,
+              color: 'BLUE',
+            })
+              .then(role => console.log(`Created role ${role}`), member.addRole(role))
           } else {
-            member.addRole(role).catch(console.error);
+            member.addRole(roleS).catch(console.error);
           }
         } else return;
       } else {
