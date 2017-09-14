@@ -6,6 +6,9 @@ const firebase = require("firebase");
 const fs = require("fs");
 var count = 0;
 
+//Use this to set how often people should "level up"
+const xpModifier = 100;
+
 var config = {
   apiKey: key.firebasekey,
   authDomain: "mjattbot.firebaseapp.com",
@@ -49,40 +52,26 @@ client.on("message", message => {
           .child(message.author.id)
           .set(total);
         let member = message.member;
-        var roleString = `Level ${total.toString()[0]}`;
-        if (total % 100 === 0 && total >= 1000) {
+        if (total % xpModifier === 0) {
+          let level = total / xpModifier;
           message.channel.send(
-            `**${message.author.username}** is now level **${total.toString().substr(0, 2)}**!`
+            `**${message.author.username}** is now level **${level}**!`
           );
-          let roleS = message.guild.roles.find(
+          let existingRole = message.guild.roles.find(
             "name",
-            "Level 1"
+            `Level ${level.toString()}`
           );
-          if (!roleS) {
+          if (!existingRole) {
             message.guild.createRole({
-              name: roleString,
+              name: `Level ${level.toString()}`,
               color: 'BLUE',
             })
-              .then(role => console.log(`Created role ${role}`), member.addRole(role))
+              .then((role) => {
+                console.log(`Created role ${role}`);
+                member.addRole(role);
+              });
           } else {
-            member.addRole(roleS).catch(console.error);
-          }
-        } else if (total % 100 === 0 && total < 1000) {
-          let roleS = message.guild.roles.find(
-            "name",
-            "Level 1"
-          );
-          message.channel.send(
-            `**${message.author.username}** is now level **${total.toString()[0]}**`
-          );
-          if (!roleS) {
-            message.guild.createRole({
-              name: roleString,
-              color: 'BLUE',
-            })
-              .then(role => console.log(`Created role ${role}`), member.addRole(role))
-          } else {
-            member.addRole(roleS).catch(console.error);
+            member.addRole(existingRole).catch(console.error);
           }
         } else return;
       } else {
