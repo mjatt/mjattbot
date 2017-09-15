@@ -1,4 +1,7 @@
 exports.run = (client, message, args) => {
+  if (!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) {
+    return message.reply(`You don't have permission to do that.`);
+  }
   if (!message.guild.channels.find("name", `moderation`)) {
     message.guild
       .createChannel("moderation", "text")
