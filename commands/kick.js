@@ -15,6 +15,6 @@ exports.run = (client, message, args) => {
     );
     kickUser.send(`http://gph.is/2gdmhIL`);
     message.guild.member(kickUser).kick();
-    message.reply(`Kicked ${kickUser}`);
+    message.reply(`Kicked ${kickUser}. Reason: ${reason}`);
   }
 };
