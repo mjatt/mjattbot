@@ -1,3 +1,5 @@
+const firebase = require("firebase");
+const firebaseRef = firebase.database().ref();
 exports.run = (client, guild) => {
   client.channels
     .get("193096439872618497")
@@ -5,7 +7,9 @@ exports.run = (client, guild) => {
       `I've been added to ${guild.name}, which has ${guild.memberCount} users`
     );
   console.log(`I've been added to ${guild.name}`);
-  guild.defaultChannel.send(
-    `Hi there, I'm NelsonManBot. :wave: To get started; use +help.`
-  );
+  firebaseRef
+    .child("levels")
+    .child("servers")
+    .child(message.guild.id)
+    .set("false");
 };
