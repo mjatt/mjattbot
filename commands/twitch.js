@@ -4,7 +4,7 @@ exports.run = (client, message, args) => {
   var options = {
     url: `https://api.twitch.tv/kraken/channels/${args[0]}/`,
     headers: {
-      "Client-ID": "otlw0seyyoceyhfcm6v2aoy55lfah7"
+      "Client-ID": ""
     },
     json: true
   };
