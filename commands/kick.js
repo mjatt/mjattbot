@@ -14,7 +14,11 @@ exports.run = (client, message, args) => {
       `You have been kicked from ${message.guild} by ${message.author.username}. Reason: ${reason}`
     );
     kickUser.send(`http://gph.is/2gdmhIL`);
-    message.guild.member(kickUser).kick();
-    message.reply(`Kicked ${kickUser}. Reason: ${reason}`);
+    try {
+      message.guild.member(kickUser).kick();
+      message.reply(`Kicked ${kickUser}. Reason: ${reason}`);
+    } catch (err) {
+      message.reply(`I failed to kick the user... Reason: ${err}`);
+    }
   }
 };

@@ -10,10 +10,14 @@ exports.run = (client, message, args) => {
     let banUser = message.mentions.users.first();
     let reason = args.slice(1).join(" ");
     if (!banUser) return message.reply(`Specify a user to ban`);
-    banUser.send(
-      `You have been banned from ${message.guild} by ${message.author.username}. Reason: ${reason}`
-    );
-    banUser.send(`http://gph.is/2gdmhIL`);
+    try {
+      banUser.send(
+        `You have been banned from ${message.guild} by ${message.author.username}. Reason: ${reason}`
+      );
+      banUser.send(`http://gph.is/2gdmhIL`);
+    } catch {
+      console.log(`Couldn't send DM to ${banUser}`);
+    }
     message.guild.member(banUser).ban();
     message.reply(`Banned ${banUser}. Reason: ${reason}`);
   }

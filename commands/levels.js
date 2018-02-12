@@ -2,8 +2,13 @@ const firebase = require("firebase");
 const firebaseRef = firebase.database().ref();
 
 exports.run = (client, message, args) => {
-  if (!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) {
-    return message.reply(`You don't have permission to use this.`);
+  if (
+    !message.guild.member(client.user).hasPermission("KICK_MEMBERS") &&
+    !message.member.hasPermission("BAN_MEMBERS")
+  ) {
+    return message.reply(
+      `I/You don't have permission to use this. Necessary permission: "Kick Members"`
+    );
   }
   if (args[0] === "on") {
     firebaseRef

@@ -15,14 +15,6 @@ exports.run = (client, message, args) => {
         let feels = JSON.stringify(result[0].current.feelslike, null, 2);
         let humidity = JSON.stringify(result[0].current.humidity, null, 2);
 
-        if (type === `"sunny"`) {
-          var wowow = ":sunny:";
-        } else if ((type = `"partly cloudy"`)) {
-          var wowow = ":partly_sunny:";
-        } else if ((type = `"rainy"`)) {
-          var wowow = ":cloud_rain:";
-        }
-
         const embed = new Discord.RichEmbed();
         let now = new Date();
         embed
@@ -31,7 +23,7 @@ exports.run = (client, message, args) => {
           .addField(`Location`, location.replace(/\"/g, ""), true)
           .addField(`Temperature`, `${temp.replace(/\"/g, "")}°C`, true)
           .addField(`Windspeed`, wind.replace(/\"/g, ""), true)
-          .addField(`What's it like?`, wowow.replace(/\"/g, ""), true)
+          .addField(`What's it like?`, type.replace(/\"/g, ""), true)
           .addField("It feels like", `${feels.replace(/\"/g, "")}°C`, true)
           .addField(`Humidity`, humidity.replace(/\"/g, ""), true)
           .setFooter(`Request generated at ${now}`);

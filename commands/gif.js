@@ -5,7 +5,6 @@ exports.run = (client, message, args) => {
   giphy.random(gifName, function(err, res) {
     if (res.data.url !== undefined) {
       message.channel.send(res.data.url);
-      console.log(res.data.url);
     } else {
       message.channel.send(`Couldn't find a gif for ${gifName}`);
     }
