@@ -10,15 +10,20 @@ exports.run = (client, message, args) => {
   var original = args.slice(1);
   var content = original.join(" ");
   if (content == null) {
-    message.channel.send(`You didn't create any content for your tag!`);
+    message.channel.send(
+      `You didn't create any content for your tag! +createtag <name> <content>`
+    );
   } else if (tag == null) {
-    message.channel.send(`You didn't name your tag!`);
+    message.channel.send(
+      `You didn't name your tag! +createtag <name> <content>`
+    );
   } else {
     firebaseRef
       .child("Tags")
-      .child("servers")
+      .child("Servers")
       .child(message.guild.id)
-      .child(tag)
+      .child(message.author.id)
+      .child(tag.toLowerCase())
       .set(content);
     message.reply(`Created tag: ${tag} as ${content}`);
   }

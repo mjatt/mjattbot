@@ -9,7 +9,14 @@ exports.run = (client, message, args) => {
 
   firebase
     .database()
-    .ref("/Tags/servers/" + message.guild.id + "/" + tag)
+    .ref(
+      "/Tags/Servers/" +
+        message.guild.id +
+        "/" +
+        message.author.id +
+        "/" +
+        tag.toLowerCase()
+    )
     .once("value")
     .then(function(snapshot) {
       var data = snapshot.val();

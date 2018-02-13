@@ -1,5 +1,12 @@
 exports.run = (client, message, args) => {
-  var number = ["1", "2", "3", "4", "5", "6"];
-  var answer = number[Math.floor(Math.random() * number.length)]; //picks a random number from the length of the array
-  message.channel.send(answer);
+  var number = args[0];
+  if (number === 0) {
+    message.channel.send(`Please specify a number to roll up to`);
+  }
+  var answer = Math.floor(Math.random() * number +1);
+  if (isNaN(answer)) {
+    message.channel.send(`Stop trying to break me :(`);
+  } else {
+    message.channel.send(answer);
+  }
 };

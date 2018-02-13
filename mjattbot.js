@@ -39,48 +39,58 @@ client.on("message", message => {
   }
   firebase
     .database()
-    .ref("/users/servers/" + message.guild.id + "/" + message.author.id)
+    .ref("/levels/servers/" + message.guild.id)
     .once("value")
-    .then(function (snapshot) {
+    .then(function(snapshot) {
       var data = snapshot.val();
-      if (data) {
-        var total = 1 + parseInt(data);
-        firebaseRef
-          .child("users")
-          .child("servers")
-          .child(message.guild.id)
-          .child(message.author.id)
-          .set(total);
-        let member = message.member;
-        if (total % xpModifier === 0) {
-          let level = total / xpModifier;
-          message.channel.send(
-            `**${message.author.username}** is now level **${level}**!`
-          );
-          let existingRole = message.guild.roles.find(
-            "name",
-            `Level ${level.toString()}`
-          );
-          if (!existingRole) {
-            message.guild.createRole({
-              name: `Level ${level.toString()}`,
-              color: 'BLUE',
-            })
-              .then((role) => {
-                console.log(`Created role ${role}`);
-                member.addRole(role);
-              });
-          } else {
-            member.addRole(existingRole).catch(console.error);
-          }
-        } else return;
-      } else {
-        firebaseRef
-          .child("users")
-          .child("servers")
-          .child(message.guild.id)
-          .child(message.author.id)
-          .set(1);
+      if (data === "true") {
+        firebase
+          .database()
+          .ref("/users/servers/" + message.guild.id + "/" + message.author.id)
+          .once("value")
+          .then(function(snapshot) {
+            var data = snapshot.val();
+            if (data) {
+              var total = 1 + parseInt(data);
+              firebaseRef
+                .child("users")
+                .child("servers")
+                .child(message.guild.id)
+                .child(message.author.id)
+                .set(total);
+              let member = message.member;
+              if (total % xpModifier === 0) {
+                let level = total / xpModifier;
+                message.channel.send(
+                  `**${message.author.username}** is now level **${level}**!`
+                );
+                let existingRole = message.guild.roles.find(
+                  "name",
+                  `Level ${level.toString()}`
+                );
+                if (!existingRole) {
+                  message.guild
+                    .createRole({
+                      name: `Level ${level.toString()}`,
+                      color: "BLUE"
+                    })
+                    .then(role => {
+                      console.log(`Created role ${role}`);
+                      member.addRole(role);
+                    });
+                } else {
+                  member.addRole(existingRole).catch(console.error);
+                }
+              } else return;
+            } else {
+              firebaseRef
+                .child("users")
+                .child("servers")
+                .child(message.guild.id)
+                .child(message.author.id)
+                .set(1);
+            }
+          });
       }
     });
 

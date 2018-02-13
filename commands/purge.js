@@ -1,7 +1,7 @@
 exports.run = (client, message, args) => {
   let can_manage_chans = message.channel
     .permissionsFor(message.member)
-    .hasPermission("MANAGE_MESSAGES");
+    .has("MANAGE_MESSAGES");
   if (can_manage_chans) {
     if (isNaN(args[0])) {
       message.channel.send(`That's not a number`);
