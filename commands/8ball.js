@@ -21,3 +21,6 @@ exports.run = (client, message, args) => {
     message.channel.send(answer);
   }
 };
+
+exports.usage = '+8ball [question]';
+exports.helpMessage = 'Gives you a random response to your query.';

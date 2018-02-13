@@ -28,3 +28,6 @@ exports.run = (client, message, args) => {
     message.reply(`Created tag: ${tag} as ${content}`);
   }
 };
+
+exports.usage = '+createTag [tagName] [tagContent]';
+exports.helpMessage = 'Creates a custom command for a server. See +tag for how to activate your tag.';
