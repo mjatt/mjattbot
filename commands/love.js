@@ -10,3 +10,6 @@ exports.run = (client, message, args) => {
     );
   }
 };
+
+exports.usage = '+love [content]';
+exports.helpMessage = 'Gives you a love rating out of 100 between you and the content';

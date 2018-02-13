@@ -6,3 +6,6 @@ exports.run = (client, message, args) => {
     `Join my developer's server https://discord.gg/e2B2nHX`
   );
 };
+
+exports.usage = '+invite';
+exports.helpMessage = 'Returns the link to invite the bot to a server. Also returns a link to my discord.';

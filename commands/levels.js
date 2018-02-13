@@ -36,3 +36,6 @@ exports.run = (client, message, args) => {
     );
   }
 };
+
+exports.usage = '+levels [on/off]';
+exports.helpMessage = 'Turns the levelling system on or off for a guild. Set to off by default';

@@ -19,3 +19,6 @@ exports.run = (client, message, args) => {
     }
   }
 };
+
+exports.usage = '+purge [number < 100]';
+exports.helpMessage = 'Removes the selected number of messages from a channel';

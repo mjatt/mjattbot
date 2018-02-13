@@ -10,3 +10,6 @@ exports.run = (client, message, args) => {
     }
   });
 };
+
+exports.usage = '+gif [content]';
+exports.helpMessage = 'Searches gifs for your content, and returns a random gif';

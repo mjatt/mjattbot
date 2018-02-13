@@ -24,3 +24,6 @@ exports.run = (client, message, args) => {
     message.reply(`That channel already exists.`);
   }
 };
+
+exports.usage = '+log';
+exports.helpMessage = 'Creates a #moderation channel for the guild. Set up to work with +warn';
