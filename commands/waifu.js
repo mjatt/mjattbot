@@ -9,3 +9,6 @@ exports.run = (client, message, args) => {
     message.channel.send(`${waifu} is a ${rating}/10 !waifu`);
   }
 };
+
+exports.usage = '+waifu [content]';
+exports.helpMessage = 'Rates how good the content is as a waifu out of 10';

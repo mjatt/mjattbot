@@ -29,3 +29,6 @@ exports.run = (client, message, args) => {
       }
     });
 };
+
+exports.usage = '+tag [tagName]';
+exports.helpMessage = 'Returns the content of the created tag';

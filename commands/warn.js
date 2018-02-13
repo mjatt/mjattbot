@@ -64,3 +64,6 @@ exports.run = (client, message, args) => {
     }
   }
 };
+
+exports.usage = '+warn [@user] [reason]';
+exports.helpMessage = 'Adds a message to #moderation if it exists which warns the user for breaking the rules.';

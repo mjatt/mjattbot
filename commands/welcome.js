@@ -42,3 +42,6 @@ exports.run = (client, message, args) => {
     message.reply(`I've set the welcome message to: ${content}`);
   }
 };
+
+exports.usage = '+welcome [enable|your message]';
+exports.helpMessage = 'Use +welcome enable, to creat the welcome channel. After the channel is created, use +welcome \'Your message....\' to create the welcome message. There is no default message.';

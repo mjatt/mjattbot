@@ -44,3 +44,6 @@ exports.run = (client, message, args) => {
     });
   }
 };
+
+exports.usage = '+xkcd [comicnumber|random]';
+exports.helpMessage = 'Returns a xkcd comic. Leave blank for the latest else use random or the comic number.';

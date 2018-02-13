@@ -31,3 +31,6 @@ exports.run = (client, message, args) => {
     }
   }
 };
+
+exports.usage = '+stab [content]';
+exports.helpMessage = 'Simulates stabbing the content';

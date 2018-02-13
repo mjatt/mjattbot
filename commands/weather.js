@@ -35,3 +35,6 @@ exports.run = (client, message, args) => {
     }
   });
 };
+
+exports.usage = '+weather [location]';
+exports.helpMessage = 'Returns some weather information from the location';
