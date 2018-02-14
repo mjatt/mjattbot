@@ -35,5 +35,5 @@ exports.run = (client, message, args) => {
   });
 };
 
-exports.usage = '+8ball [question]';
+exports.usage = '+help';
 exports.helpMessage = 'Sends you a message with details on other commands you can use.';

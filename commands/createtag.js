@@ -29,5 +29,5 @@ exports.run = (client, message, args) => {
   }
 };
 
-exports.usage = '+createTag [tagName] [tagContent]';
+exports.usage = '+createtag [tagName] [tagContent]';
 exports.helpMessage = 'Creates a custom command for a server. See +tag for how to activate your tag.';
