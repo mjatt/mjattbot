@@ -15,3 +15,6 @@ exports.run = (client, message, args) => {
       .catch(console.error);
   }
 };
+
+exports.usage = '+unban [userID]';
+exports.helpMessage = 'Unbans a user with the given user ID';

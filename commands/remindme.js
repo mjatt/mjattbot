@@ -69,4 +69,4 @@ exports.run = (client, message, args) => {
 };
 
 exports.usage = '+remindme [time in mins] [content]';
-exports.helpMessage = 'Pings the user after the time allocated with the contet. If the bot goes offline, it will not save the reminder.';
+exports.helpMessage = 'Pings the user after the time allocated with the content. If the bot goes offline, it will not save the reminder.';

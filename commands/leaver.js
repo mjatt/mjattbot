@@ -19,3 +19,6 @@ exports.run = (client, message, args) => {
     message.reply(`I've set the leaving message to: ${content}`);
   }
 };
+
+exports.usage = '+leaver [content]';
+exports.helpMessage = 'Sets a leaving message for the server for use with the #welcome channel.';

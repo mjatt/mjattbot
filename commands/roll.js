@@ -11,5 +11,5 @@ exports.run = (client, message, args) => {
   }
 };
 
-exports.usage = '+roll';
-exports.helpMessage = 'Rolls a dice.';
+exports.usage = '+roll [number]';
+exports.helpMessage = 'Rolls a random number between 0 and the value given.';

@@ -81,4 +81,4 @@ exports.run = (client, message, args) => {
 };
 
 exports.usage = '+play [youtubeURL]';
-exports.helpMessage = 'Plays a YouTube video. This also sends a message with the playback controls';
+exports.helpMessage = 'Plays a YouTube video. This also sends a message with the playback controls. youtu.be links dont work';

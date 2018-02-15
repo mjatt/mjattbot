@@ -5,3 +5,6 @@ exports.run = (client, message, args) => {
     message.channel.send(url);
   });
 };
+
+exports.usage = 'puppy';
+exports.helpMessage = 'Gets a puppy image';

@@ -43,3 +43,6 @@ exports.run = (client, message, args) => {
       });
   }
 };
+
+exports.usage = '+xp [@user]';
+exports.helpMessage = 'Returns the XP used in the levelling system for a user. Leave blank to get your own';

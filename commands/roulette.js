@@ -224,3 +224,6 @@ exports.run = (client, message, args) => {
     );
   }
 };
+
+exports.usage = '+roulette [register|amount to bet] [red|black|number 1-38]';
+exports.helpMessage = 'Gamble your points away. Must use register first.';

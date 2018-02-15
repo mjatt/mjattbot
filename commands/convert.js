@@ -6,3 +6,6 @@ exports.run = (client, message, args) => {
     message.channel.send(`Error! ${err.message}`);
   }
 };
+
+exports.usage = '+convert [number] [startingMeasurement] [finalMeasurement]';
+exports.helpMessage = 'Convert a value into another value.';
