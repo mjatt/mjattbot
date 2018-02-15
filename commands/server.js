@@ -37,3 +37,6 @@ exports.run = (client, message, args) => {
     message.channel.send({ embed: embed });
   }
 };
+
+exports.usage = '+server';
+exports.helpMessage = 'Returns some information about the server';

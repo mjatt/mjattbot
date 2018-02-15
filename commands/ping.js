@@ -3,3 +3,6 @@ exports.run = (client, message, args) => {
     m.edit(`Pong **${m.createdTimestamp - message.createdTimestamp}ms**`);
   });
 };
+
+exports.usage = '+ping';
+exports.helpMessage = 'Shows how long it takes for the bot to reply';

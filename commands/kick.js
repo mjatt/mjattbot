@@ -22,3 +22,6 @@ exports.run = (client, message, args) => {
     }
   }
 };
+
+exports.usage = '+kick [@user] [reason]';
+exports.helpMessage = 'Kicks the mentioned user and sends them a private message with the reason.';

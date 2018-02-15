@@ -7,3 +7,6 @@ exports.run = (client, message, args) => {
     message.channel.send(`Don't mention users`);
   }
 };
+
+exports.usage = '+say [content]';
+exports.helpMessage = 'Makes the bot echo your message';

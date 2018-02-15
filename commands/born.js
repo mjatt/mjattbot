@@ -5,3 +5,6 @@ exports.run = (client, message, args) => {
     message.reply(`${message.mentions.users.first().username}'s account was created at ${message.mentions.users.first().createdAt}`)
   }
 };
+
+exports.usage = '+born [@user]';
+exports.helpMessage = 'Returns the time and date the user was created. Leave blank to get your own.';

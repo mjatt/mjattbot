@@ -24,3 +24,6 @@ exports.run = (client, message, args) => {
     `${message.author.username} just asked about my stats in ${message.guild}`
   );
 };
+
+exports.usage = '+stats';
+exports.helpMessage = 'Returns some stats about the bot.';

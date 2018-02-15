@@ -28,3 +28,6 @@ exports.run = (client, message, args) => {
       });
   }
 };
+
+exports.usage = '+pokemon [pokemonName|gif] [pokemonName]';
+exports.helpMessage = 'Returns a pokemon picture and id. Use [gif] to return a gif of the pokemon';

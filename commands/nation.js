@@ -30,3 +30,6 @@ exports.run = (client, message, args) => {
         })
 
 };
+
+exports.usage = '+nation [nationName]';
+exports.helpMessage = 'Returns some nation information from nationstates';

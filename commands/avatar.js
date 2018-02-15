@@ -9,3 +9,6 @@ exports.run = (client, message, args) => {
     }
   }
 };
+
+exports.usage = '+avatar [@user]';
+exports.helpMessage = 'Returns the users avatar, leave blank to get your own';
